@@ -565,7 +565,6 @@ class CIUSuite2(object):
                     logger.warning('Not enough files for comparison. Make sure axes overlap at least partially.')
                 else:
                     Original_CIU.compare_basic_raw(updated_obj_list[0], updated_obj_list[1], self.params_obj, self.output_dir)
-
                     # save analysis objs to ensure that parameter changes are noted correctly
                     updated_filelist = []
                     for analysis_obj in updated_obj_list:
