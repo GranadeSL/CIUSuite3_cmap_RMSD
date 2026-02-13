@@ -140,7 +140,7 @@ def rmsd_difference(ciu_matrix_1, ciu_matrix_2, noise_cutoff):
 
 
 def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
-              file1, file2, blue_label=None, red_label=None, filename_append='', custom_cmap="bwr"):
+              file1, file2, blue_label=None, red_label=None, color_start="blue", color_end="red", filename_append=''):
     """
     Make a CIUSuite comparison RMSD plot with provided parameters
     :param difference_matrix: 2D ndarray with differences to plot
@@ -152,6 +152,8 @@ def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
     :param blue_label: (optional) custom colorbar label for the second file
     :param red_label: (optional) custom colorbar label for the first file
     :param params_obj: Parameters container with plotting information
+    :param color_start: The first color in the colormap, should be given using HEX colors
+    :param color_end: The last color in the colormap, should be given using HEX colors
     :type params_obj: Parameters
     :param filename_append: optional string to append to output title immediately before the file extenstion
     :return: void
@@ -180,9 +182,10 @@ def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
 
     # make the RMSD contour plot
     custom_cmap = LinearSegmentedColormap.from_list('custom cmap', (
-    (0.000, (0.000, 0.000, 0.000)),
+    (0.000, color_start),
     (0.500, (1.000, 1.000, 1.000)),
-    (1.000, (0.949, 0.549, 0.157))))
+    (1.000, color_end)))
+
     plt.contourf(axes[1], axes[0], difference_matrix, contour_scaling, cmap=custom_cmap, ticks="none")
     plt.tick_params(axis='x', which='both', bottom='off', top='off', left='off', right='off')
     plt.tick_params(axis='y', which='both', bottom='off', top='off', left='off', right='off')
