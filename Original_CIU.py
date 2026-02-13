@@ -20,6 +20,7 @@ from CIU_raw import CIURaw
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 logger = logging.getLogger('main')
 
 
@@ -178,8 +179,7 @@ def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
     colorbar_scaling = np.linspace(-rmsd_plot_scaling, rmsd_plot_scaling, 3, endpoint=True)
 
     # make the RMSD contour plot
-    custom_cmap = LinearSegmentedColormap.from_list('my gradient', (
-    # Edit this gradient at https://eltos.github.io/gradient/#000000-FFFFFF-F28C28
+    custom_cmap = LinearSegmentedColormap.from_list('custom cmap', (
     (0.000, (0.000, 0.000, 0.000)),
     (0.500, (1.000, 1.000, 1.000)),
     (1.000, (0.949, 0.549, 0.157))))
