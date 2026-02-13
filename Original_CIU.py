@@ -181,6 +181,8 @@ def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
     colorbar_scaling = np.linspace(-rmsd_plot_scaling, rmsd_plot_scaling, 3, endpoint=True)
 
     # make the RMSD contour plot
+    print(color_start)
+    print(color_end)
     custom_cmap = LinearSegmentedColormap.from_list('custom cmap', (
     (0.000, color_start),
     (0.500, (1.000, 1.000, 1.000)),
