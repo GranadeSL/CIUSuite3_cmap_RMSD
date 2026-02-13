@@ -139,7 +139,7 @@ def rmsd_difference(ciu_matrix_1, ciu_matrix_2, noise_cutoff):
 
 
 def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
-              file1, file2, blue_label=None, red_label=None, filename_append=''):
+              file1, file2, blue_label=None, red_label=None, filename_append='', custom_cmap="bwr"):
     """
     Make a CIUSuite comparison RMSD plot with provided parameters
     :param difference_matrix: 2D ndarray with differences to plot
@@ -178,7 +178,12 @@ def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
     colorbar_scaling = np.linspace(-rmsd_plot_scaling, rmsd_plot_scaling, 3, endpoint=True)
 
     # make the RMSD contour plot
-    plt.contourf(axes[1], axes[0], difference_matrix, contour_scaling, cmap="bwr", ticks="none")
+    custom_cmap = LinearSegmentedColormap.from_list('my gradient', (
+    # Edit this gradient at https://eltos.github.io/gradient/#000000-FFFFFF-F28C28
+    (0.000, (0.000, 0.000, 0.000)),
+    (0.500, (1.000, 1.000, 1.000)),
+    (1.000, (0.949, 0.549, 0.157))))
+    plt.contourf(axes[1], axes[0], difference_matrix, contour_scaling, cmap=custom_cmap, ticks="none")
     plt.tick_params(axis='x', which='both', bottom='off', top='off', left='off', right='off')
     plt.tick_params(axis='y', which='both', bottom='off', top='off', left='off', right='off')
 
