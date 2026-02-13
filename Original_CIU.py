@@ -140,7 +140,7 @@ def rmsd_difference(ciu_matrix_1, ciu_matrix_2, noise_cutoff):
 
 
 def rmsd_plot(difference_matrix, axes, rtext, outputdir, params_obj,
-              file1, file2, blue_label=None, red_label=None, color_start="blue", color_end="red", filename_append=''):
+              file1, file2, blue_label=None, red_label=None, color_start=None, color_end=None, filename_append=''):
     """
     Make a CIUSuite comparison RMSD plot with provided parameters
     :param difference_matrix: 2D ndarray with differences to plot
